@@ -7,12 +7,12 @@
 
 <p>
   <b>Employment:</b>
-  <%= @sale.employment_id %>
+  <%= @sale.employment.project.title %>
 </p>
 
 <p>
   <b>Employee:</b>
-  <%= @sale.employee_id %>
+  <%= @sale.employee.firstname %> <%= @sale.employee.lastname %>
 </p>
 
 <p>

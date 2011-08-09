@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Title</th>
+		<th>Customer</th>
     <th>Employment</th>
     <th>Employee</th>
     <th>Sum</th>
@@ -15,8 +16,9 @@
 <% @sales.each do |sale| %>
   <tr>
     <td><%= sale.title %></td>
-    <td><%= sale.employment_id %></td>
-    <td><%= sale.employee_id %></td>
+		<td><%= sale.customer %></td>
+    <td><%= sale.employment.project.title %></td>
+    <td><%= sale.employee.firstname %> <%= sale.employee.lastname %></td>
     <td><%= sale.sum %></td>
     <td><%= sale.description %></td>
     <td><%= link_to 'Show', sale %></td>

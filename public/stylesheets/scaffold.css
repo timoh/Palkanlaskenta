@@ -20,12 +20,28 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
+#header {
+	text-align:center;
+}
+
+#logo {
+	text-align:center;
+	min-height:120px;
+	background-image:url('/images/efekta-logo-sm.jpg');
+	background-position:center;
+	background-repeat:no-repeat;
+}
+
 #menu ul li {
 	display: inline;
 }
 
 #menu ul li a{
 	display: inline;
+}
+
+.employee-detailed-list h3{
+	text-decoration:underline;
 }
 
 #notice {

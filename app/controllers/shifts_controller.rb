@@ -9,6 +9,17 @@ class ShiftsController < ApplicationController
       format.xml  { render :xml => @shifts }
     end
   end
+  
+  def reporting
+    @employees = Employee.all
+    @shifts = Shift.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @shifts }
+    end
+  end
+
 
   # GET /shifts/1
   # GET /shifts/1.xml

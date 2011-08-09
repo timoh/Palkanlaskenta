@@ -9,7 +9,11 @@ Palkanlaskenta::Application.routes.draw do
 
   resources :employees
   
+  resources :calculations
+  
   match 'reporting' => 'shifts#reporting'
+  
+  root :to => "shifts#reporting"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

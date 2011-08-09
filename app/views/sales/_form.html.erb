@@ -12,12 +12,9 @@
   <% end %>
 
   <div class="field">
-	Employee: <br />
-    <%= collection_select(:sale, :employee_id, Employee.all, :id, :print_name) %>
+	Project assignment (employment): <br />
+    <%= collection_select(:sale, :employment_id, Employment.all, :id, :print_employment) %>
   </div>
-
-
-
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -26,10 +23,7 @@
     <%= f.label :customer %> (the company the sales was closed with)<br />
     <%= f.text_field :customer %>
   </div>
-  <div class="field">
-	Customer: <br />
-    <%= collection_select(:sale, :employment_id, Employment.all, :id, :print_employment) %>
-  </div>
+
 
   <div class="field">
     <%= f.label :sum %><br />

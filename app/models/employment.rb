@@ -5,7 +5,7 @@ class Employment < ActiveRecord::Base
   
   
   def print_employment
-    "#{self.project.title}"
+    "#{self.project.title}, #{self.employee.firstname } #{self.employee.lastname}"
   end
   
 end

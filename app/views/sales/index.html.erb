@@ -5,9 +5,8 @@
     <th>Title</th>
 		<th>Customer</th>
     <th>Employment</th>
-    <th>Employee</th>
     <th>Sum</th>
-    <th>Description</th>
+<th>Provision</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,10 +16,9 @@
   <tr>
     <td><%= sale.title %></td>
 		<td><%= sale.customer %></td>
-    <td><%= sale.employment.project.title %></td>
-    <td><%= sale.employee.firstname %> <%= sale.employee.lastname %></td>
+    <td><%= sale.employment.project.title %>, <%= sale.employment.employee.firstname %> <%= sale.employment.employee.lastname %></td>
     <td><%= sale.sum %></td>
-    <td><%= sale.description %></td>
+		<td><%= sale.employment.provision*sale.sum %></td>
     <td><%= link_to 'Show', sale %></td>
     <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
     <td><%= link_to 'Destroy', sale, :confirm => 'Are you sure?', :method => :delete %></td>

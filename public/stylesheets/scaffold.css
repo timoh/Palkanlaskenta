@@ -40,6 +40,12 @@ div.field, div.actions {
 	display: inline;
 }
 
+.employee-detailed-list {
+	margin-top:50px;
+	margin-bottom:20px;
+}
+
+
 .employee-detailed-list h3{
 	text-decoration:underline;
 }

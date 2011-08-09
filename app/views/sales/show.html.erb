@@ -11,11 +11,6 @@
 </p>
 
 <p>
-  <b>Employee:</b>
-  <%= @sale.employee.firstname %> <%= @sale.employee.lastname %>
-</p>
-
-<p>
   <b>Sum:</b>
   <%= @sale.sum %>
 </p>
@@ -23,6 +18,11 @@
 <p>
   <b>Description:</b>
   <%= @sale.description %>
+</p>
+
+<p>
+  <b>Provision:</b>
+  <%= @sale.employment.provision*@sale.sum %>
 </p>
 
 

@@ -3,23 +3,26 @@
 
 
 <% @employees.each do |employee| %>
+<div class="employee-wage-details">
 	<h2><%= employee.firstname %> <%= employee.lastname %>
 
 	<h3>Provision based salary</h3>
+	
+	<ul>
 	<% employee.sales.each do |sale| %>
-		Sale title: <%= sale.title %>, Sale sum: <%= sale.sum %>, Sale provision: <%= sale.sum*sale.employment.provision %> (provision percentage: <%= sale.employment.provision*100.0 %>&#037;)
-
+		<li><%= sale.employment.project.title %>: <%= sale.title %> –– Amount: <%= sale.sum %>&euro;, Provision percentage: <%= sale.employment.provision*100.0 %>&#037;, Provision earned: <u><%= sale.sum*sale.employment.provision %>&euro;</u></li>
 		<% end %>
+	</ul>
 
 		<h3>Time based salary</h3>
+			<ul>
+		<% employee.shifts.each do |shift| %>
 			
-				<% employee.shifts.each do |shift| %>
-			
-				<p>Shift id: <%= shift.id%>, shift duration: <%= shift.duration%>, hourly wage: <%= shift.employment.hourly_wage%>&euro;/h, shift wage: <%= shift.duration*shift.employment.hourly_wage%>&euro;.</p>
-
-
-				<% end %>
-	<h3>Total salary</h3>
-	<%=  employee.total_salary  %>
-
+			<li>Shift id: <%= shift.id%>, Date: <%= shift.start_date%>, Duration: <%= shift.duration%>, Hourly wage: <%= shift.employment.hourly_wage%>&euro;/h, Earned: <u><%= shift.duration*shift.employment.hourly_wage%>&euro;</u>.</li>
+				
+		<% end %>
+	</ul>
+	<h4>Total salary: <%= employee.total_salary %>&euro;</h4>
+	
+</div>
 <% end %>

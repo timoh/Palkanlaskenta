@@ -40,13 +40,22 @@ div.field, div.actions {
 	display: inline;
 }
 
+.employee-wage-details {
+	margin-top:50px;
+	margin-bottom:20px;
+}
+
+.employee-wage-details h4 {
+	text-decoration:underline;
+}
+
 .employee-detailed-list {
 	margin-top:50px;
 	margin-bottom:20px;
 }
 
 
-.employee-detailed-list h3{
+.employee-detailed-list h3 {
 	text-decoration:underline;
 }
 

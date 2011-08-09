@@ -2,12 +2,12 @@
 
 <p>
   <b>Employee:</b>
-  <%= @shift.employee_id %>
+  <%= @shift.employee.firstname %> <%= @shift.employee.lastname %>
 </p>
 
 <p>
   <b>Project:</b>
-  <%= @shift.project_id %>
+  <%= @shift.project.title %>
 </p>
 
 <p>
@@ -28,6 +28,11 @@
 <p>
   <b>Duration:</b>
   <%= @shift.duration %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @shift.start_time+@shift.break_duration+@shift.duration %>
 </p>
 
 

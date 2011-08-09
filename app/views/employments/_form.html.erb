@@ -12,12 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :employee_id %><br />
-    <%= f.text_field :employee_id %>
+    <%= collection_select(:employment, :employee_id, Employee.all, :id, :print_name) %>
   </div>
   <div class="field">
-    <%= f.label :project_id %><br />
-    <%= f.text_field :project_id %>
+    <%= collection_select(:employment, :project_id, Project.all, :id, :print_project) %>
   </div>
   <div class="field">
     <%= f.label :minimum_wage %><br />

@@ -1,4 +1,6 @@
 Palkanlaskenta::Application.routes.draw do
+  resources :employments
+
   resources :projects
 
   resources :employees

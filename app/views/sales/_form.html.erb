@@ -16,12 +16,11 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :employment_id %><br />
-    <%= f.text_field :employment_id %>
+		Assignment
+    <%= collection_select(:sale, :employment_id, Employment.all, :id, :print_employment) %>
   </div>
   <div class="field">
-    <%= f.label :employee_id %><br />
-    <%= f.text_field :employee_id %>
+    <%= collection_select(:sale, :employee_id, Employee.all, :id, :print_name) %>
   </div>
   <div class="field">
     <%= f.label :sum %><br />

@@ -20,6 +20,14 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
+#menu ul li {
+	display: inline;
+}
+
+#menu ul li a{
+	display: inline;
+}
+
 #notice {
   color: green;
 }

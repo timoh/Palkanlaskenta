@@ -1,13 +1,14 @@
-<h1>Listing shifts</h1>
+<h1>Time tracking</h1>
 
 <table>
   <tr>
     <th>Employee</th>
-    <th>Project</th>
+    <th>Case</th>
     <th>Start date</th>
     <th>Start time</th>
     <th>Break duration</th>
     <th>Duration</th>
+		<th>End time</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,7 +17,7 @@
 <% @shifts.each do |shift| %>
   <tr>
     <td><%= shift.employee.firstname %> <%= shift.employee.lastname %></td>
-    <td><%= shift.project.title %></td>
+    <td><%= shift.employment.project.title %></td>
     <td><%= shift.start_date %></td>
     <td><%= shift.start_time %></td>
     <td><%= shift.break_duration %></td>

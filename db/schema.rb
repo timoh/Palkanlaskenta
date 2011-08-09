@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110809154643) do
+ActiveRecord::Schema.define(:version => 20110809160825) do
 
   create_table "employees", :force => true do |t|
     t.string   "firstname"
@@ -50,11 +50,12 @@ ActiveRecord::Schema.define(:version => 20110809154643) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "customer"
   end
 
   create_table "shifts", :force => true do |t|
     t.integer  "employee_id"
-    t.integer  "project_id"
+    t.integer  "employment_id"
     t.date     "start_date"
     t.time     "start_time"
     t.float    "break_duration"

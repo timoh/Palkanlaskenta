@@ -15,7 +15,7 @@
     <%= collection_select(:shift, :employee_id, Employee.all, :id, :print_name) %>
   </div>
   <div class="field">
-    <%= collection_select(:shift, :project_id, Project.all, :id, :print_project) %>
+    <%= collection_select(:shift, :employment_id, Employment.all, :id, :print_employment) %>
   </div>
   <div class="field">
     <%= f.label :start_date %><br />

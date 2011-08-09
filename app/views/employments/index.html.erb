@@ -1,4 +1,4 @@
-<h1>Listing employments</h1>
+<h1>Project assignments (employments)</h1>
 
 <table>
   <tr>
@@ -14,8 +14,8 @@
 
 <% @employments.each do |employment| %>
   <tr>
-    <td><%= employment.employee_id %></td>
-    <td><%= employment.project_id %></td>
+    <td><%= employment.employee.firstname %> <%= employment.employee.lastname %></td>
+    <td><%= employment.project.title %></td>
     <td><%= employment.minimum_wage %></td>
     <td><%= employment.provision %></td>
     <td><%= employment.comes_on_top %></td>

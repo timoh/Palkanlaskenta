@@ -41,6 +41,8 @@ class SalesController < ApplicationController
   # POST /sales.xml
   def create
     @sale = Sale.new(params[:sale])
+    employment_id = params[:id][:employment_id]
+    @sale.employee_id = @sale.employment.employee.id
 
     respond_to do |format|
       if @sale.save
@@ -57,6 +59,8 @@ class SalesController < ApplicationController
   # PUT /sales/1.xml
   def update
     @sale = Sale.find(params[:id])
+    employment_id = params[:id][:employment_id]
+    @sale.employee_id = @sale.employment.employee.id
 
     respond_to do |format|
       if @sale.update_attributes(params[:sale])

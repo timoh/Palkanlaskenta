@@ -1,1 +1,25 @@
-<h1>Calculations</h1>
+<h1>Wage calculations</h1>
+
+
+
+<% @employees.each do |employee| %>
+	<h2><%= employee.firstname %> <%= employee.lastname %>
+
+	<h3>Provision based salary</h3>
+	<% employee.sales.each do |sale| %>
+		Sale title: <%= sale.title %>, Sale sum: <%= sale.sum %>, Sale provision: <%= sale.sum*sale.employment.provision %> (provision percentage: <%= sale.employment.provision*100.0 %>&#037;)
+
+		<% end %>
+
+		<h3>Time based salary</h3>
+			
+				<% employee.shifts.each do |shift| %>
+			
+				<p>Shift id: <%= shift.id%>, shift duration: <%= shift.duration%>, hourly wage: <%= shift.employment.hourly_wage%>&euro;/h, shift wage: <%= shift.duration*shift.employment.hourly_wage%>&euro;.</p>
+
+
+				<% end %>
+	<h3>Total salary</h3>
+	<%=  employee.total_salary  %>
+
+<% end %>

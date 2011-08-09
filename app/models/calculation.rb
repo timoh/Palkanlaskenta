@@ -1,4 +1,3 @@
-class Shift
-
+class Calculation #< ActiveRecord::Base
 
 end

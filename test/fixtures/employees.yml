@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  firstname: MyString
+  lastname: MyString
+  minimum_wage: 1.5
+  employment_start: 2011-08-09
+  employment_end: 2011-08-09
+  default_provision: 1.5
+
+two:
+  firstname: MyString
+  lastname: MyString
+  minimum_wage: 1.5
+  employment_start: 2011-08-09
+  employment_end: 2011-08-09
+  default_provision: 1.5

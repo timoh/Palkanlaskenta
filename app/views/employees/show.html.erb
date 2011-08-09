@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Firstname:</b>
+  <%= @employee.firstname %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @employee.lastname %>
+</p>
+
+<p>
+  <b>Minimum wage:</b>
+  <%= @employee.minimum_wage %>
+</p>
+
+<p>
+  <b>Employment start:</b>
+  <%= @employee.employment_start %>
+</p>
+
+<p>
+  <b>Employment end:</b>
+  <%= @employee.employment_end %>
+</p>
+
+<p>
+  <b>Default provision:</b>
+  <%= @employee.default_provision %>
+</p>
+
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Employee:</b>
+  <%= @employment.employee_id %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @employment.project_id %>
+</p>
+
+<p>
+  <b>Minimum wage:</b>
+  <%= @employment.minimum_wage %>
+</p>
+
+<p>
+  <b>Provision:</b>
+  <%= @employment.provision %>
+</p>
+
+<p>
+  <b>Comes on top:</b>
+  <%= @employment.comes_on_top %>
+</p>
+
+
+<%= link_to 'Edit', edit_employment_path(@employment) %> |
+<%= link_to 'Back', employments_path %>

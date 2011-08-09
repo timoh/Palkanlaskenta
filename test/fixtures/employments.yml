@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  employee_id: 1
+  project_id: 1
+  minimum_wage: 1.5
+  provision: 1.5
+  comes_on_top: false
+
+two:
+  employee_id: 1
+  project_id: 1
+  minimum_wage: 1.5
+  provision: 1.5
+  comes_on_top: false

@@ -28,6 +28,10 @@
     <%= f.date_select :employment_start %>
   </div>
   <div class="field">
+    <%= f.label :current_employee %><br />
+    <%= f.check_box :current_employee %>
+  </div>
+  <div class="field">
     <%= f.label :employment_end %><br />
     <%= f.date_select :employment_end %>
   </div>
@@ -35,6 +39,7 @@
     <%= f.label :default_provision %><br />
     <%= f.text_field :default_provision %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

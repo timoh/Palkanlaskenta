@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  employee_id: 1
+  project_id: 1
+  start_date: 2011-08-09
+  start_time: 2011-08-09 18:21:30
+  break_duration: 1.5
+  duration: 1.5
+
+two:
+  employee_id: 1
+  project_id: 1
+  start_date: 2011-08-09
+  start_time: 2011-08-09 18:21:30
+  break_duration: 1.5
+  duration: 1.5

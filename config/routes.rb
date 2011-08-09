@@ -1,4 +1,6 @@
 Palkanlaskenta::Application.routes.draw do
+  resources :shifts
+
   resources :employments
 
   resources :projects

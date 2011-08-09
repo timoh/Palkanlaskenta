@@ -1,4 +1,6 @@
 Palkanlaskenta::Application.routes.draw do
+  resources :sales
+
   resources :shifts
 
   resources :employments

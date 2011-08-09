@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  employment_id: 1
+  employee_id: 1
+  sum: 1.5
+  description: MyText
+
+two:
+  title: MyString
+  employment_id: 1
+  employee_id: 1
+  sum: 1.5
+  description: MyText

@@ -29,7 +29,7 @@ class Employee < ActiveRecord::Base
     
     #calculate all sales for employee
     self.sales.each do |sale|
-      tot_sales = tot_sales+sale.sum
+      tot_sales = tot_sales+(sale.sum*sale.employment.provision)
     end
     
     #calculate all wages from shifts, except those that come on top

@@ -41,7 +41,7 @@ class SalesController < ApplicationController
   # POST /sales.xml
   def create
     @sale = Sale.new(params[:sale])
-    employment_id = params[:id][:employment_id]
+    employment_id = params[:employment_id]
     @sale.employee_id = @sale.employment.employee.id
 
     respond_to do |format|

@@ -55,6 +55,9 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.save
+        
+        logger.info "Sale #{@sale.title} created by #{current_user.email}"
+        
         format.html { redirect_to(@sale, :notice => 'Sale was successfully created.') }
         format.xml  { render :xml => @sale, :status => :created, :location => @sale }
       else
@@ -73,6 +76,9 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.update_attributes(params[:sale])
+        
+        logger.info "Sale #{@sale.title} updated by #{current_user.email}"
+        
         format.html { redirect_to(@sale, :notice => 'Sale was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -85,6 +91,9 @@ class SalesController < ApplicationController
   # DELETE /sales/1
   # DELETE /sales/1.xml
   def destroy
+    
+    logger.info "Sale #{@sale.title} destroyed by #{current_user.email}"
+    
     @sale = Sale.find(params[:id])
     @sale.destroy
 

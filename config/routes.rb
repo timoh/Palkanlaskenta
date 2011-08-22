@@ -17,13 +17,9 @@ Palkanlaskenta::Application.routes.draw do
   resources :calculations
   
   match 'reporting' => 'shifts#reporting'
-  
-  if User.all.count > 0
-    root :to => "shifts#reporting"
-  else
-    root :to => "users#new", :notice => "To get started, please setup the admin user (don't forget to check the 'Admin' checkbox!)"
-  end
-  
+
+  root :to => "shifts#reporting"
+
   resources :sessions
   
   get "log_in" => "sessions#new", :as => "log_in"

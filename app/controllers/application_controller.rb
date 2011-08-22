@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
-  if User.all.count > 0 
     before_filter :require_login
-  end
   
   protect_from_forgery
 

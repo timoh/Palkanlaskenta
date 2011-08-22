@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
-  before_filter :require_login
+  if User.all.count > 0 
+    before_filter :require_login
+  end
+  
   protect_from_forgery
+
   helper_method :current_user
   helper_method :admin?
   
@@ -14,7 +18,9 @@ class ApplicationController < ActionController::Base
   private
   
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    if User.all.count >0
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
   end
   
   def admin?

@@ -44,6 +44,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        #reload routes when user is saved to redetermine what is the default root
+        Palkanlaskenta::Application.reload_routes!
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -60,6 +62,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        #reload routes when user is saved to redetermine what is the default root
+        Palkanlaskenta::Application.reload_routes!
         format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -74,6 +78,9 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    
+    #reload routes when user is saved to redetermine what is the default root
+    Palkanlaskenta::Application.reload_routes!
 
     respond_to do |format|
       format.html { redirect_to(users_url) }

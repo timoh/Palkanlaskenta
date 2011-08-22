@@ -25,6 +25,22 @@
   <%= @sale.employment.provision*@sale.sum %>
 </p>
 
+<p>
+  <b>Order confirmation:</b>
+  <%= @sale.order_confirmation %>
+</p>
+
+<p>
+  <b>Billing request sent:</b>
+  <%= @sale.billing_request_sent? %>
+</p>
+
+<p>
+  <b>Billed:</b>
+  <%= @sale.billed? %>
+</p>
+
+
 
 <%= link_to 'Edit', edit_sale_path(@sale) %> |
 <%= link_to 'Back', sales_path %>

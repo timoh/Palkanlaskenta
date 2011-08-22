@@ -3,8 +3,7 @@
 <table>
   <tr>
     <th>Email</th>
-    <th>Password hash</th>
-    <th>Password salt</th>
+	<th>Admin?</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +12,7 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.email %></td>
-    <td><%= user.password_hash %></td>
-    <td><%= user.password_salt %></td>
+	<td><%= user.admin? %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>

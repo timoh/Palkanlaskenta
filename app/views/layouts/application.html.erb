@@ -21,13 +21,30 @@
 			<li><a href="/calculations">Wage calculations</a></li> |
 			<li><a href="/employments">Project assignments (employments)</a></li> |
 			<li><a href="/employees">Employee management</a></li> |
-			<li><a href="/projects">Project management</a></li>
+			<li><a href="/projects">Project management</a></li> |
+			<li><a href="/users">System user management</a></li> |
+			
+			
+			<div id="user_nav">
+				<% if current_user %>
+				Logged in as <%= current_user.email %>
+				<li><a href="/log_out">Logout</a></li>
+				<% else %>
+				<li><a href="/log_in">Login</a></li>
+				<% end %>
+			</div>
+			
 		</ul>
 	</div>
 	<hr />
 	
 </div>
 
+
+
+<% flash.each do |name, msg| %>
+ <%= content_tag :div, msg, :id => "flash#{name}" %>
+<% end %>
 
 
 <%= yield %>

@@ -1,4 +1,7 @@
 Palkanlaskenta::Application.routes.draw do
+
+  resources :users
+
   resources :sales
 
   resources :shifts
@@ -14,6 +17,11 @@ Palkanlaskenta::Application.routes.draw do
   match 'reporting' => 'shifts#reporting'
   
   root :to => "shifts#reporting"
+  
+  resources :sessions
+  
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "log_out" => "sessions#destroy", :as => "log_out"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

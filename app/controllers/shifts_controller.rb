@@ -35,11 +35,20 @@ class ShiftsController < ApplicationController
   # GET /shifts/new
   # GET /shifts/new.xml
   def new
-    @shift = Shift.new
+    
+    if Employee.all.count == 0 || Employment.all.count == 0
+      if Employee.all.count == 0
+        redirect_to :employees, :notice => 'Create an employee first!'
+      else
+        redirect_to :employments, :notice => 'Create an employment first!'
+      end      
+    else
+      @shift = Shift.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @shift }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @shift }
+      end
     end
   end
 

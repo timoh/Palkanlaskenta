@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :customer %> (the company the sales was closed with)<br />
-    <%= f.text_field :customer %>
+<%= collection_select(:sale, :customer_id, Customer.all, :id, :print_customer) %>
   </div>
 
 

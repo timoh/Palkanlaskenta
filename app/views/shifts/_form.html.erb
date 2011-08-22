@@ -12,9 +12,11 @@
   <% end %>
 
   <div class="field">
+	Employee<br />
     <%= collection_select(:shift, :employee_id, Employee.all, :id, :print_name) %>
   </div>
   <div class="field">
+	Employment (project) <br />
     <%= collection_select(:shift, :employment_id, Employment.all, :id, :print_employment) %>
   </div>
   <div class="field">

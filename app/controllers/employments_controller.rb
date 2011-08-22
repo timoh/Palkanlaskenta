@@ -24,11 +24,19 @@ class EmploymentsController < ApplicationController
   # GET /employments/new
   # GET /employments/new.xml
   def new
-    @employment = Employment.new
+    if Employee.all.count == 0 || Project.all.count == 0
+      if Employee.all.count == 0
+        redirect_to :employees, :notice => 'Create an employee first!'
+      else
+        redirect_to :projects, :notice => 'Create a project first!'
+      end      
+    else
+      @employment = Employment.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @employment }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @employment }
+      end
     end
   end
 

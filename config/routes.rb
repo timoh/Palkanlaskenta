@@ -1,5 +1,7 @@
 Palkanlaskenta::Application.routes.draw do
 
+  resources :customers
+
   resources :users
 
   resources :sales

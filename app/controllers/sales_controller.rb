@@ -24,11 +24,20 @@ class SalesController < ApplicationController
   # GET /sales/new
   # GET /sales/new.xml
   def new
-    @sale = Sale.new
+  
+    if Employee.all.count == 0 || Customer.all.count == 0
+      if Employee.all.count == 0
+        redirect_to :employees, :notice => 'Create an employee first!'
+      else
+        redirect_to :customers, :notice => 'Create a customer first!'
+      end
+    else
+      @sale = Sale.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @sale }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @sale }
+      end
     end
   end
 

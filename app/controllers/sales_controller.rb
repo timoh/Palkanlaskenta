@@ -92,9 +92,9 @@ class SalesController < ApplicationController
   # DELETE /sales/1.xml
   def destroy
     
+    @sale = Sale.find(params[:id])
     logger.info "Sale #{@sale.title} destroyed by #{current_user.email}"
     
-    @sale = Sale.find(params[:id])
     @sale.destroy
 
     respond_to do |format|

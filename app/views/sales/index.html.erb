@@ -19,15 +19,15 @@
 <% @sales.each do |sale| %>
 <% if sale.employment != nil && sale.customer != nil %>
   <tr>
-	<td><%= if sale.employment.project.title sale.employment.project.title %>, <%= if sale.employment.employee.firstname sale.employment.employee.firstname %> <%= if sale.employment.employee.lastname sale.employment.employee.lastname %></td>
-<td><%= if sale.customer.name sale.customer.name %> – <%= if sale.customer.contact_person_name sale.customer.contact_person_name %></td>    
+	<td><%= sale.employment.project.title %>, <%= sale.employment.employee.firstname %> <%= sale.employment.employee.lastname %></td>
+<td><%= sale.customer.name %> – <%= sale.customer.contact_person_name %></td>    
 <% end %>
 <td><%= sale.title %></td>
 		
     
     <td><%= sale.sum %></td>
 <% if sale.employment != nil %>
-		<td><%= if sale.employment.provision sale.employment.provision*sale.sum %></td>
+		<td><%= sale.employment.provision*sale.sum %></td>
 <% end %>
 		<td><%= sale.billing_request_sent? %></td>
 		<td><%= sale.billed? %></td>

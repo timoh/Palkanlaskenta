@@ -20,7 +20,7 @@
 
 		  <tr>
 				<td><%= shift.id %></td>
-		    <td><%= shift.start_date %></td>
+		    <td><%= shift.start_date.to_s(:long) %></td>
 		    <td><%= shift.duration %></td>
 				<td><%= shift.employment.project.title %></td>
 		    <td><%= link_to 'Show', shift %></td>

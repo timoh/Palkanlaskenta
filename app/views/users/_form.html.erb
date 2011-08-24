@@ -23,7 +23,7 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
-<% unless admin? != false && User.find_by_admin(true) == nil %>
+<% if admin? != true || User.find_by_admin(true) == nil %>
   <div class="field">
     <%= f.label :admin %><br />
     <%= check_box "user", "admin" %>

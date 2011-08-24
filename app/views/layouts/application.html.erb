@@ -47,7 +47,13 @@
 	
 </div>
 
-
+<% [:info, :error].each do |key| %>
+  <% if flash[key] %>
+  <div class="<%= key %>" id="flash">
+    <%= flash[key] %>
+  </div>
+  <% end %>
+<% end %>
 
 <p id="notice"><%= notice %></p>
 

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  
   if User.all.count == 0 
     skip_before_filter :require_login, :only => [:new, :create]
   end
@@ -29,6 +28,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
+    before_filter :require_admin
     @user = User.new
 
     respond_to do |format|
@@ -45,6 +45,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+    before_filter :require_admin
     @user = User.new(params[:user])
 
     respond_to do |format|
@@ -81,6 +82,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
+    before_filter :require_admin
     @user = User.find(params[:id])
     @user.destroy
     
@@ -92,4 +94,13 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  def require_admin
+    unless admin?
+      flash[:error] = "You must be admin to access user manipulation!"
+      redirect_to root_url
+    end
+  end
+  
 end

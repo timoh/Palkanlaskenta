@@ -15,14 +15,30 @@
 	</ul>
 
 		<h3>Time based salary</h3>
-			<ul>
+			<table>
+				<tr>
+					<th>Shift id</th> 
+					<th>Project</th>
+					<th>Date</th>
+					<th>Duration</th>
+					<th>Hourly wage</th>
+					<th>Comes on top of<br /> minimum wage</th>
+					<th>Earned</th>
+				</tr>
 		<% employee.shifts.each do |shift| %>
-			
-			<li>Shift id: <%= shift.id %>, Project: <%= shift.employment.project.title %>, Date: <%= shift.start_date.to_s(:long) %>, Duration: <%= shift.duration%>, Hourly wage: <%= shift.employment.hourly_wage%>&euro;/h, Comes on top of minimum wage: <b><%= shift.employment.comes_on_top %></b>, Earned: <u><%= shift.duration*shift.employment.hourly_wage%>&euro;</u>.</li>
+				<tr>
+					<td><%= shift.id %></td>
+					<td><%= shift.employment.project.title %></td>
+					<td><%= l (shift.start_date, :format => :short) %></td>
+					<td><%= shift.duration%></td>
+					<td><%= shift.employment.hourly_wage%>&euro;/h</td>
+					<td><b><%= shift.employment.comes_on_top %></b></td> 
+					<td><u><%= number_to_currency(shift.duration*shift.employment.hourly_wage, :locale => :fi) %></u></td>
+				</tr>
 				
 		<% end %>
-	</ul>
-	<h4>Total salary: <%= employee.total_salary %>&euro;</h4>
+			</table>
+	<h4>Total salary: <%= number_to_currency(employee.total_salary, :locale => :fi) %></h4>
 	
 </div>
 <% end %>

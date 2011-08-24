@@ -10,11 +10,18 @@
       </ul>
     </div>
   <% end %>
-
+<% if admin? %>
   <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+<% else %>
+<div class="field">
     <%= f.label :email %><br />
     <%= @user.email %>
   </div>
+
+<% end %>
   <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password %>

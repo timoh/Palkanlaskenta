@@ -15,7 +15,7 @@
 	
 	<div id="user_nav">
 		<% if current_user %>
-		Logged in as <%= link_to, current_user.email, user_path(current_user) %> <% if current_user && admin? %> (admin) <% end %> |
+		Logged in as <%= link_to, current_user.email, :controller => 'users', :action => 'show', :id => current_user.id %> <% if current_user && admin? %> (admin) <% end %> |
 		<a href="/log_out">Logout</a>
 		<% else %>
 		<a href="/log_in">Login</a>

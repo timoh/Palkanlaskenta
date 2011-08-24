@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_filter :require_admin, :only => [:new, :create, :destroy]
+  
   if User.all.count == 0 
     skip_before_filter :require_login, :only => [:new, :create]
   end
@@ -28,7 +31,6 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    before_filter :require_admin
     @user = User.new
 
     respond_to do |format|
@@ -45,7 +47,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    before_filter :require_admin
     @user = User.new(params[:user])
 
     respond_to do |format|
@@ -82,7 +83,6 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    before_filter :require_admin
     @user = User.find(params[:id])
     @user.destroy
     

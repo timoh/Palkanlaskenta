@@ -114,6 +114,8 @@ class UsersController < ApplicationController
     elsif (current_user != nil && admin? == false)
         flash[:error] = "No id parameter set. You can't access anyone else's data except yours – you are not an admin!"
         redirect_to root_url
+    elsif (current_user != nil && admin? == true)
+        flash[:notice] = "Only admins can edit other users. You should be an admin. If not, please contact administration!"
     else
       session[:user_id] = nil
       redirect_to :log_in, :notice => 'Unknown user access error. Loggin out just to make sure! Please contact administration.'  

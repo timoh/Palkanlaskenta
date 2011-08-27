@@ -1,0 +1,19 @@
+<h1>To be invoiced</h1>
+
+<table>
+	<tr>
+		<th>Confirmation date</th>
+		<th>Customer name</th>
+		<th>Invoice title</th>
+		<th>Sum</th>
+		
+	</tr>
+<% @invoices.each do |invoice| %>
+<tr>
+	<td><%= invoice.confirmation_date %></td>
+	<td><%= invoice.customer.name %></td>
+	<td><%= invoice.title %></td>
+	<td><%= invoice.sum %></td>
+</tr>	
+<% end %>
+</table>

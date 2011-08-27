@@ -35,6 +35,12 @@
   </div>
 
 	<div class="field">
+    <%= f.label :confirmation_date %> (paste the authorization email)<br />
+    <%= f.date_select :confirmation_date %>
+  </div>
+
+
+	<div class="field">
     <%= f.label :order_confirmation %> (paste the authorization email)<br />
     <%= f.text_area :order_confirmation %>
   </div>

@@ -16,6 +16,8 @@ Palkanlaskenta::Application.routes.draw do
   
   resources :calculations
   
+  resources :invoices
+  
   match 'reporting' => 'shifts#reporting'
 
   root :to => "shifts#reporting"

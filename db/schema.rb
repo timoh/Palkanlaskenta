@@ -10,7 +10,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
 ActiveRecord::Schema.define(:version => 20110828150906) do
 
   create_table "additions", :force => true do |t|

@@ -35,17 +35,23 @@
   </div>
 
 	<div class="field">
+    <%= f.label :confirmation_date %> (the date the customer confirmed the order, needed for billing)<br />
+    <%= f.date_select :confirmation_date %>
+  </div>
+
+
+	<div class="field">
     <%= f.label :order_confirmation %> (paste the authorization email)<br />
     <%= f.text_area :order_confirmation %>
   </div>
 
   <div class="field">
-    <%= f.label :billing_request_sent %><br />
+    <%= f.label :billing_request_sent %> (=has the billing request to the customer been sent)<br />
     <%= check_box "sale", "billing_request_sent" %>
   </div>
 
   <div class="field">
-    <%= f.label :billed %><br />
+    <%= f.label :billed %> (=has the invoice been sent to the customer)<br />
     <%=  check_box "sale", "billed" %>
   </div>
 

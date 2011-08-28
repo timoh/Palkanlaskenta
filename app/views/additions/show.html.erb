@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @addition.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @addition.description %>
+</p>
+
+<p>
+  <b>Sum:</b>
+  <%= @addition.sum %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @addition.date %>
+</p>
+
+<p>
+  <b>Employee:</b>
+  <%= @addition.employee_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_addition_path(@addition) %> |
+<%= link_to 'Back', additions_path %>

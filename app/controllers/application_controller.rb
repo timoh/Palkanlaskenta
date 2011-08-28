@@ -22,7 +22,12 @@ class ApplicationController < ActionController::Base
   end
   
   def admin?
-    current_user.admin?
+    #relevant question only if one or more admins exist..
+    if User.find_by_admin(true) != nil
+      current_user.admin?
+    else
+      true
+    end
   end
 
   

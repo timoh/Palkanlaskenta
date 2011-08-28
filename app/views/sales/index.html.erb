@@ -3,8 +3,8 @@
 <table>
   <tr>
 	<th>Employment</th>
-	<th>Seller</th>
 	<th>Customer</th>
+	<th>Confirmation date</th>
     <th>Title</th>
 		
     <th>Sum</th>
@@ -22,6 +22,7 @@
 	<td><%= sale.employment.project.title %>, <%= sale.employment.employee.firstname %> <%= sale.employment.employee.lastname %></td>
 <td><%= sale.customer.name %> – <%= sale.customer.contact_person_name %></td>    
 <% end %>
+<td><%= sale.confirmation_date %></td>
 <td><%= sale.title %></td>
 		
     

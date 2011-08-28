@@ -1,5 +1,5 @@
 class AdditionsController < ApplicationController
-
+  before_filter :require_admin, :only => [:new, :create, :destroy]
   # GET /additions
   # GET /additions.xml
   def index
@@ -83,4 +83,19 @@ class AdditionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+  def require_admin
+    #you can only require someone to be an admin, if there is an admin user present
+    if User.find_by_admin(true) != nil
+      logger.info "User id (#{current_user.id}) is accessing stuff that is required to be done by an admin"
+      unless admin?
+        flash[:error] = "You must be admin to access user manipulation!"
+        redirect_to root_url
+      end
+    end
+  end
+  
+  
 end

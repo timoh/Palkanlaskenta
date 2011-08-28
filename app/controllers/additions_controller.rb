@@ -1,5 +1,7 @@
 class AdditionsController < ApplicationController
-  before_filter :require_admin, :only => [:new, :create, :destroy]
+  before_filter :require_admin
+  
+  
   # GET /additions
   # GET /additions.xml
   def index

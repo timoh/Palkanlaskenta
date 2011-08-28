@@ -28,8 +28,8 @@
     <%= f.date_select :date %>
   </div>
   <div class="field">
-    <%= f.label :employment_id %><br />
-    <%= f.text_field :employment_id %>
+	Project assignment (employment): <br />
+    <%= collection_select(:addition, :employment_id, Employment.all, :id, :print_employment) %>
   </div>
   <div class="actions">
     <%= f.submit %>

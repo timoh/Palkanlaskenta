@@ -3,6 +3,8 @@ class Employee < ActiveRecord::Base
   has_many :sales
   has_many :projects, :through => :employments
   has_many :shifts
+  has_many :additions
+  has_many :sales
   
   validates_presence_of :firstname, :lastname, :minimum_wage, :default_provision
   validates_numericality_of :minimum_wage, :default_provision

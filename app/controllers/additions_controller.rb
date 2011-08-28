@@ -42,6 +42,8 @@ class AdditionsController < ApplicationController
   # POST /additions.xml
   def create
     @addition = Addition.new(params[:addition])
+    employment_id = params[:employment_id]
+    @addition.employee_id = @addition.employment.employee.id
 
     respond_to do |format|
       if @addition.save

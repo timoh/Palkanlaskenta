@@ -10,7 +10,16 @@
 	
 	<ul>
 	<% employee.sales.each do |sale| %>
+
 		<li><%= sale.employment.project.title %>: <%= sale.title %> –– Amount: <%= sale.sum %>&euro;, Provision percentage: <%= sale.employment.provision*100.0 %>&#037;, Provision earned: <u><%= sale.sum*sale.employment.provision %>&euro;</u></li>
+		<% end %>
+	</ul>
+	
+	<h3>Additional salary</h3>
+	
+	<ul>
+	<% employee.additions.each do |addition| %>
+			<li><%= addition.date %> – <%= addition.employment.project.title %> (<%= addition.title %>): <u><%= number_to_currency(addition.sum, :locale => :fi) %></u></li>
 		<% end %>
 	</ul>
 

@@ -18,6 +18,8 @@ Palkanlaskenta::Application.routes.draw do
   
   resources :calculations
   
+  match 'calculations/:year/:month' => 'calculations#show'
+  
   resources :invoices
   
   match 'reporting' => 'shifts#reporting'

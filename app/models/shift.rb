@@ -1,4 +1,7 @@
 class Shift < ActiveRecord::Base
+  
+  by_star_field :start_date
+  
   belongs_to :employee
   belongs_to :employment
   

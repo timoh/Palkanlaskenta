@@ -1,0 +1,54 @@
+<h1>Wage calculations</h1>
+	<ul>
+	<% @months_with_shifts.each do |year, month| %>
+		<li><%= year %></li>
+			<ul>		
+			<% month.each do |value| %>	
+
+				<li><a href="/calculations/<%= year %>/<%= value.to_s %>"><%= Date::MONTHNAMES[value] %></a></li>
+			<% end %>
+			</ul>
+	<% end %>
+	</ul>
+
+
+
+<h1>Shifts</h1>
+			
+		<% @employees.each do |employee| %>
+			<% if ((employee.shifts.count > 0) && employee_included?(employee, @shifts)) %>
+			<h2><%= employee.firstname+' '+employee.lastname %></h2>
+			
+			
+				<h3>Time based salary</h3>
+						<table>
+							<tr>
+								<th>Shift id</th> 
+								<th>Project</th>
+								<th>Date</th>
+								<th>Duration</th>
+								<th>Hourly wage</th>
+								<th>Comes on top of<br /> minimum wage</th>
+								<th>Earned</th>
+							</tr>
+			
+				<% @shifts.each do |shift| %>
+					<% if shift.employee.id == employee.id %>
+							<tr>
+								<td><%= shift.id %></td>
+								<td><%= shift.employment.project.title %></td>
+								<td><%= l (shift.start_date, :format => :short) %></td>
+								<td><%= shift.duration%></td>
+								<td><%= shift.employment.hourly_wage%>&euro;/h</td>
+								<td><b><%= shift.employment.comes_on_top %></b></td> 
+								<td><u><%= number_to_currency(shift.duration*shift.employment.hourly_wage, :locale => :fi) %></u></td>
+							</tr>
+	
+					<%end %>
+					
+
+				<%end %></table>
+				
+					
+			<%end %>
+		<% end%>

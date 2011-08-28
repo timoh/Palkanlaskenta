@@ -1,4 +1,15 @@
 <h1>Wage calculations</h1>
+	<ul>
+	<% @months_with_shifts.each do |year, month| %>
+		<li><%= year %></li>
+			<ul>		
+			<% month.each do |value| %>	
+
+				<li><a href="/calculations/<%= year %>/<%= value.to_s %>"><%= Date::MONTHNAMES[value] %></a></li>
+			<% end %>
+			</ul>
+	<% end %>
+	</ul>
 
 <% if admin? %>
 <% logger.info "Calculations index.html.erb says: #{current_user.email} is accessing admin only stuff" %>

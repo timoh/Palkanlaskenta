@@ -1,3 +1,3 @@
-class Calculation #< ActiveRecord::Base
+class Calculation #< ActiveRecord::Base  
 
 end

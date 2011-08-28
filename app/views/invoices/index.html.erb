@@ -13,9 +13,9 @@
 	<td><%= invoice.confirmation_date %></td>
 	<td><%= invoice.customer.name %></td>
 	<td><%= invoice.title %></td>
-	<td><%= invoice.sum %></td>
+	<td><%= number_to_currency(invoice.sum, :locale => :fi) %></td>
 </tr>	
 <% end %>
 </table>
 
-<p><u><b>Total invoicable:</b> <%= @total %></u></p>
+<p><u><b>Total invoicable:</b> <%= number_to_currency(@total, :locale => :fi)  %></u></p>

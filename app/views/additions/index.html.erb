@@ -2,11 +2,10 @@
 
 <table>
   <tr>
+	<th>Date</th>
+	<th>Employee</th>
     <th>Title</th>
-    <th>Description</th>
     <th>Sum</th>
-    <th>Date</th>
-    <th>Employee</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,11 +13,10 @@
 
 <% @additions.each do |addition| %>
   <tr>
+	<td><%= addition.date %></td>
+	<td><%= addition.employee.print_name %></td>
     <td><%= addition.title %></td>
-    <td><%= addition.description %></td>
-    <td><%= addition.sum %></td>
-    <td><%= addition.date %></td>
-    <td><%= addition.employment_id %></td>
+    <td><%= number_to_currency(addition.sum, :locale => :fi) %></td>
     <td><%= link_to 'Show', addition %></td>
     <td><%= link_to 'Edit', edit_addition_path(addition) %></td>
     <td><%= link_to 'Destroy', addition, :confirm => 'Are you sure?', :method => :delete %></td>

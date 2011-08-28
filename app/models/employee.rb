@@ -6,6 +6,8 @@ class Employee < ActiveRecord::Base
   has_many :additions
   has_many :sales
   
+  has_one :user
+  
   validates_presence_of :firstname, :lastname, :minimum_wage, :default_provision
   validates_numericality_of :minimum_wage, :default_provision
   
@@ -41,6 +43,16 @@ class Employee < ActiveRecord::Base
     
     addit_subtotal
     
+  end
+  
+  def all_shifts_subtotal
+    shifts_subtotal = 0
+    
+    self.shifts.each do |shift|
+      shifts_subtotal = shifts_subtotal+(shift.duration*shift.employment.hourly_wage)
+    end
+    
+    shifts_subtotal
   end
   
   def shifts_not_on_top_subtotal

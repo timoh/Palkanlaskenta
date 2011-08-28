@@ -1,53 +1,120 @@
 <h1>Wage calculations</h1>
 
+<% if admin? %>
+<% logger.info "Calculations index.html.erb says: #{current_user.email} is accessing admin only stuff" %>
+	<% @employees.each do |employee| %>
+	<div class="employee-wage-details">
+		<h2><%= employee.firstname %> <%= employee.lastname %>
 
-
-<% @employees.each do |employee| %>
-<div class="employee-wage-details">
-	<h2><%= employee.firstname %> <%= employee.lastname %>
-
-	<h3>Provision based salary</h3>
+		<h3>Provision based salary</h3>
 	
-	<ul>
-	<% employee.sales.each do |sale| %>
+		<ul>
+		<% employee.sales.each do |sale| %>
 
-		<li><%= sale.employment.project.title %>: <%= sale.title %> –– Amount: <%= sale.sum %>&euro;, Provision percentage: <%= sale.employment.provision*100.0 %>&#037;, Provision earned: <u><%= sale.sum*sale.employment.provision %>&euro;</u></li>
-		<% end %>
-	</ul>
+			<li><%= sale.employment.project.title %>: <%= sale.title %> –– Amount: <%= sale.sum %>&euro;, Provision percentage: <%= sale.employment.provision*100.0 %>&#037;, Provision earned: <u><%= sale.sum*sale.employment.provision %>&euro;</u></li>
+			<% end %>
+		</ul>
 	
-	<h3>Additional salary</h3>
+		<h4>Provision subtotals: <%= number_to_currency(employee.provision_subtotal, :locale => :fi) %></h4>
 	
-	<ul>
-	<% employee.additions.each do |addition| %>
-			<li><%= addition.date %> – <%= addition.employment.project.title %> (<%= addition.title %>): <u><%= number_to_currency(addition.sum, :locale => :fi) %></u></li>
-		<% end %>
-	</ul>
-
 		<h3>Time based salary</h3>
-			<table>
-				<tr>
-					<th>Shift id</th> 
-					<th>Project</th>
-					<th>Date</th>
-					<th>Duration</th>
-					<th>Hourly wage</th>
-					<th>Comes on top of<br /> minimum wage</th>
-					<th>Earned</th>
-				</tr>
-		<% employee.shifts.each do |shift| %>
-				<tr>
-					<td><%= shift.id %></td>
-					<td><%= shift.employment.project.title %></td>
-					<td><%= l (shift.start_date, :format => :short) %></td>
-					<td><%= shift.duration%></td>
-					<td><%= shift.employment.hourly_wage%>&euro;/h</td>
-					<td><b><%= shift.employment.comes_on_top %></b></td> 
-					<td><u><%= number_to_currency(shift.duration*shift.employment.hourly_wage, :locale => :fi) %></u></td>
-				</tr>
+				<table>
+					<tr>
+						<th>Shift id</th> 
+						<th>Project</th>
+						<th>Date</th>
+						<th>Duration</th>
+						<th>Hourly wage</th>
+						<th>Comes on top of<br /> minimum wage</th>
+						<th>Earned</th>
+					</tr>
+			<% employee.shifts.each do |shift| %>
+					<tr>
+						<td><%= shift.id %></td>
+						<td><%= shift.employment.project.title %></td>
+						<td><%= l (shift.start_date, :format => :short) %></td>
+						<td><%= shift.duration%></td>
+						<td><%= shift.employment.hourly_wage%>&euro;/h</td>
+						<td><b><%= shift.employment.comes_on_top %></b></td> 
+						<td><u><%= number_to_currency(shift.duration*shift.employment.hourly_wage, :locale => :fi) %></u></td>
+					</tr>
 				
-		<% end %>
-			</table>
-	<h4>Total salary: <%= number_to_currency(employee.total_salary, :locale => :fi) %></h4>
+			<% end %>
+				</table>
+			
+		<p>Base salary subtotals: <%= number_to_currency(employee.shifts_not_on_top_subtotal, :locale => :fi) %><br />
+		Additional time based salary subtotals: <%= number_to_currency(employee.shifts_on_top_subtotal, :locale => :fi) %></p>			
+		<h4>Time based salary subtotals: <%= number_to_currency(employee.all_shifts_subtotal, :locale => :fi) %></h4>		
+			
+		<h3>Additional salary</h3>
+
+		<ul>
+		<% employee.additions.each do |addition| %>
+				<li><%= addition.date %> – <%= addition.employment.project.title %> (<%= addition.title %>): <u><%= number_to_currency(addition.sum, :locale => :fi) %></u></li>
+			<% end %>
+		</ul>
+
+		<h4>Additional salary subtotals: <%= number_to_currency(employee.additionals_subtotal, :locale => :fi) %></h4>		
+			
+		<h3>Total salary: <%= number_to_currency(employee.total_salary, :locale => :fi) %></h3>
 	
-</div>
+	</div>
+	<% end %>
+<% else %>
+		<div class="employee-wage-details">
+			<h2><%= @my_calculation.firstname %> <%= @my_calculation.lastname %>
+
+			<h3>Provision based salary</h3>
+	
+			<ul>
+			<% @my_calculation.sales.each do |sale| %>
+
+				<li><%= sale.employment.project.title %>: <%= sale.title %> –– Amount: <%= sale.sum %>&euro;, Provision percentage: <%= sale.employment.provision*100.0 %>&#037;, Provision earned: <u><%= sale.sum*sale.employment.provision %>&euro;</u></li>
+				<% end %>
+			</ul>
+	
+			<h4>Provision subtotals: <%= number_to_currency(@my_calculation.provision_subtotal, :locale => :fi) %></h4>
+	
+			<h3>Time based salary</h3>
+					<table>
+						<tr>
+							<th>Shift id</th> 
+							<th>Project</th>
+							<th>Date</th>
+							<th>Duration</th>
+							<th>Hourly wage</th>
+							<th>Comes on top of<br /> minimum wage</th>
+							<th>Earned</th>
+						</tr>
+				<% @my_calculation.shifts.each do |shift| %>
+						<tr>
+							<td><%= shift.id %></td>
+							<td><%= shift.employment.project.title %></td>
+							<td><%= l (shift.start_date, :format => :short) %></td>
+							<td><%= shift.duration%></td>
+							<td><%= shift.employment.hourly_wage%>&euro;/h</td>
+							<td><b><%= shift.employment.comes_on_top %></b></td> 
+							<td><u><%= number_to_currency(shift.duration*shift.employment.hourly_wage, :locale => :fi) %></u></td>
+						</tr>
+				
+				<% end %>
+					</table>
+			
+			<p>Base salary subtotals: <%= number_to_currency(@my_calculation.shifts_not_on_top_subtotal, :locale => :fi) %><br />
+			Additional time based salary subtotals: <%= number_to_currency(@my_calculation.shifts_on_top_subtotal, :locale => :fi) %></p>			
+			<h4>Time based salary subtotals: <%= number_to_currency(@my_calculation.all_shifts_subtotal, :locale => :fi) %></h4>		
+			
+			<h3>Additional salary</h3>
+
+			<ul>
+			<% @my_calculation.additions.each do |addition| %>
+					<li><%= addition.date %> – <%= addition.employment.project.title %> (<%= addition.title %>): <u><%= number_to_currency(addition.sum, :locale => :fi) %></u></li>
+				<% end %>
+			</ul>
+
+			<h4>Additional salary subtotals: <%= number_to_currency(@my_calculation.additionals_subtotal, :locale => :fi) %></h4>		
+			
+			<h3>Total salary: <%= number_to_currency(@my_calculation.total_salary, :locale => :fi) %></h3>
+	
+		</div>
 <% end %>

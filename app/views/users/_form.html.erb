@@ -35,6 +35,10 @@
     <%= f.label :admin %><br />
     <%= check_box "user", "admin" %>
   </div>
+  <div class="field">
+	Linked to employee: <br />
+    <%= collection_select(:user, :employee_id, Employee.all, :id, :print_name) %>
+  </div>
 <% end %>
   <div class="actions">
     <%= f.submit %>

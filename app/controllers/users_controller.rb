@@ -67,6 +67,7 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
+    @user.employee_id = params[:employee_id]
 
     respond_to do |format|
         if @user.update_attributes(params[:user])
@@ -109,7 +110,8 @@ class UsersController < ApplicationController
           accessing_own_data = true
         end
       
-        unless accessing_own_data == true
+        unless accessing_own_data == true || admin?
+          logger.info "User id (#{current_user.id}) is accessing stuff that is required to be done by an admin"
           flash[:error] = "You can't access anyone else's data except yours – you are not an admin!"
           redirect_to root_url
         end
@@ -128,6 +130,7 @@ class UsersController < ApplicationController
   def require_admin
     #you can only require someone to be an admin, if there is an admin user present
     if User.find_by_admin(true) != nil
+      logger.info "User id (#{current_user.id}) is accessing stuff that is required to be done by an admin"
       unless admin?
         flash[:error] = "You must be admin to access user manipulation!"
         redirect_to root_url

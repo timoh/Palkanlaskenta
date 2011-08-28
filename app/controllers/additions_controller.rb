@@ -1,4 +1,5 @@
 class AdditionsController < ApplicationController
+
   # GET /additions
   # GET /additions.xml
   def index

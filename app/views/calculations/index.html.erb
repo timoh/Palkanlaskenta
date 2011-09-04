@@ -12,82 +12,134 @@
 	</ul>
 
 <% if admin? %>
-<% logger.info "Calculations index.html.erb says: #{current_user.email} is accessing admin only stuff" %>
 	<% @employees.each do |employee| %>
-	<div class="employee-wage-details">
-		<h2><%= employee.firstname %> <%= employee.lastname %>
+		<% if employee.sales.count > 0 || employee.shifts.count > 0 || employee.additions.count > 0 %>
+		<div class="employee-wage-details">
+			<h2><%= employee.firstname %> <%= employee.lastname %></h2>
 
-		<h3>Provision based salary</h3>
+				<% if employee.sales.count > 0 %>
+				<h3>Provision based salary</h3>
 	
-		<ul>
-		<% employee.sales.each do |sale| %>
+					<table class="employee-wage-provision">
+						<tr>
+							<th>Confirmation date</th>
+							<th>Project</th>
+							<th>Title</th>
+							<th>Sum</th>
+							<th>Provision %</th>
+							<th>Provision earned</th>
+						</tr>
+					<% employee.sales.each do |sale| %>
 
-			<li><%= sale.employment.project.title %>: <%= sale.title %> –– Amount: <%= sale.sum %>&euro;, Provision percentage: <%= sale.employment.provision*100.0 %>&#037;, Provision earned: <u><%= sale.sum*sale.employment.provision %>&euro;</u></li>
-			<% end %>
-		</ul>
-	
-		<h4>Provision subtotals: <%= number_to_currency(employee.provision_subtotal, :locale => :fi) %></h4>
-	
-		<h3>Time based salary</h3>
-				<table>
-					<tr>
-						<th>Shift id</th> 
-						<th>Project</th>
-						<th>Date</th>
-						<th>Duration</th>
-						<th>Hourly wage</th>
-						<th>Comes on top of<br /> minimum wage</th>
-						<th>Earned</th>
-					</tr>
-			<% employee.shifts.each do |shift| %>
-					<tr>
-						<td><%= shift.id %></td>
-						<td><%= shift.employment.project.title %></td>
-						<td><%= l (shift.start_date, :format => :short) %></td>
-						<td><%= shift.duration%></td>
-						<td><%= shift.employment.hourly_wage%>&euro;/h</td>
-						<td><b><%= shift.employment.comes_on_top %></b></td> 
-						<td><u><%= number_to_currency(shift.duration*shift.employment.hourly_wage, :locale => :fi) %></u></td>
-					</tr>
+						<tr class="<%= cycle("even", "odd", :name => "provision") -%>">
+							<td><%= sale.confirmation_date %></td> 
+							<td><%= sale.employment.project.title %></td>
+							<td><%= sale.title %></td>
+						 	<td><%= number_to_currency(sale.sum, :locale => :fi) %></td>
+							<td><%= sale.employment.provision*100.0 %>&#037;</td>
+							<td><u><%= sale.sum*sale.employment.provision %>&euro;</u></td>
+						</tr>
+						<% end %>
+						<% reset_cycle("provision") %>
+					</table>
+				<% end %>
+					<h4>Provision subtotals: <%= number_to_currency(employee.provision_subtotal, :locale => :fi) %></h4>
 				
-			<% end %>
-				</table>
+				<% if employee.shifts.count > 0 %>
+				<h3>Time based salary</h3>
+						<table class="employee-wage-shifts">
+							<tr>
+								<th>Shift id</th> 
+								<th>Project</th>
+								<th>Date</th>
+								<th>Duration</th>
+								<th>Hourly wage</th>
+								<th>Comes on top of<br /> minimum wage</th>
+								<th>Earned</th>
+							</tr>
+					<% employee.shifts.each do |shift| %>
+							<tr class="<%= cycle("even", "odd", :name => "shifts") -%>">
+								<td><%= shift.id %></td>
+								<td><%= shift.employment.project.title %></td>
+								<td><%= l (shift.start_date, :format => :short) %></td>
+								<td><%= shift.duration%></td>
+								<td><%= shift.employment.hourly_wage%>&euro;/h</td>
+								<td><b><%= shift.employment.comes_on_top %></b></td> 
+								<td><u><%= number_to_currency(shift.duration*shift.employment.hourly_wage, :locale => :fi) %></u></td>
+							</tr>
+				
+					<% end %>
+					<% reset_cycle("shifts") %>
+						</table>
 			
-		<p>Base salary subtotals: <%= number_to_currency(employee.shifts_not_on_top_subtotal, :locale => :fi) %><br />
-		Additional time based salary subtotals: <%= number_to_currency(employee.shifts_on_top_subtotal, :locale => :fi) %></p>			
-		<h4>Time based salary subtotals: <%= number_to_currency(employee.all_shifts_subtotal, :locale => :fi) %></h4>		
-			
-		<h3>Additional salary</h3>
+						<p>Base salary subtotals: <%= number_to_currency(employee.shifts_not_on_top_subtotal, :locale => :fi) %><br />
+							Additional time based salary subtotals: <%= number_to_currency(employee.shifts_on_top_subtotal, :locale => :fi) %></p>			
+				<% end %>
+					<h4>Time based salary subtotals: <%= number_to_currency(employee.all_shifts_subtotal, :locale => :fi) %></h4>
+				
+				<% if employee.additions.count > 0 %>
+				<h3>Additional salary</h3>
 
-		<ul>
-		<% employee.additions.each do |addition| %>
-				<li><%= addition.date %> – <%= addition.employment.project.title %> (<%= addition.title %>): <u><%= number_to_currency(addition.sum, :locale => :fi) %></u></li>
-			<% end %>
-		</ul>
-
-		<h4>Additional salary subtotals: <%= number_to_currency(employee.additionals_subtotal, :locale => :fi) %></h4>		
+					<table class="employee-wage-additions">
+						<tr>
+							<th>Date</th>
+							<th>Project title</th>
+							<th>Addition title</th>
+							<th>Addition sum</th>		
+						</tr>
 			
-		<h3>Total salary: <%= number_to_currency(employee.total_salary, :locale => :fi) %></h3>
-	
-	</div>
+						<% employee.additions.each do |addition| %>
+							<tr class="<%= cycle("even", "odd", :name => "additions") -%>">
+								<td><%= addition.date %><td> 
+								<td><%= addition.employment.project.title %></td> 
+								<td><%= addition.title %></td> 
+								<td><%= number_to_currency(addition.sum, :locale => :fi) %></td>
+							</tr>
+						<% end %>
+						<% reset_cycle("additions") %>
+					</table>		
+				<% end %>
+					<h4>Additional salary subtotals: <%= number_to_currency(employee.additionals_subtotal, :locale => :fi) %></h4>
+				
+			<h3>Total salary: <%= number_to_currency(employee.total_salary, :locale => :fi) %></h3>
+		
+		</div>
+		<% end %>
 	<% end %>
+	
 <% else %>
 		<div class="employee-wage-details">
 			<h2><%= @my_calculation.firstname %> <%= @my_calculation.lastname %>
 
 			<h3>Provision based salary</h3>
 	
-			<ul>
-			<% @my_calculation.sales.each do |sale| %>
+				<table class="employee-wage-provision">
+					<tr>
+						<th>Confirmation date</th>
+						<th>Project</th>
+						<th>Title</th>
+						<th>Sum</th>
+						<th>Provision %</th>
+						<th>Provision earned</th>
+					</tr>
+				<% @my_calculation.sales.each do |sale| %>
 
-				<li><%= sale.employment.project.title %>: <%= sale.title %> –– Amount: <%= sale.sum %>&euro;, Provision percentage: <%= sale.employment.provision*100.0 %>&#037;, Provision earned: <u><%= sale.sum*sale.employment.provision %>&euro;</u></li>
-				<% end %>
-			</ul>
+					<tr class="<%= cycle("even", "odd", :name => "sales") -%>">
+						<td><%= sale.confirmation_date %></td> 
+						<td><%= sale.employment.project.title %></td>
+						<td><%= sale.title %></td>
+					 	<td><%= number_to_currency(sale.sum, :locale => :fi) %></td>
+						<td><%= sale.employment.provision*100.0 %>&#037;</td>
+						<td><u><%= sale.sum*sale.employment.provision %>&euro;</u></td>
+					</tr>
+					<% end %>
+					<% reset_cycle("sales") %>
+				</table>
 	
-			<h4>Provision subtotals: <%= number_to_currency(@my_calculation.provision_subtotal, :locale => :fi) %></h4>
+				<h4>Provision subtotals: <%= number_to_currency(@my_calculation.provision_subtotal, :locale => :fi) %></h4>
 	
 			<h3>Time based salary</h3>
-					<table>
+					<table class="employee-wage-shifts">
 						<tr>
 							<th>Shift id</th> 
 							<th>Project</th>
@@ -98,7 +150,7 @@
 							<th>Earned</th>
 						</tr>
 				<% @my_calculation.shifts.each do |shift| %>
-						<tr>
+						<tr class="<%= cycle("even", "odd", :name => "shifts") -%>">
 							<td><%= shift.id %></td>
 							<td><%= shift.employment.project.title %></td>
 							<td><%= l (shift.start_date, :format => :short) %></td>
@@ -109,21 +161,37 @@
 						</tr>
 				
 				<% end %>
+				<% reset_cycle("shifts") %>
 					</table>
 			
-			<p>Base salary subtotals: <%= number_to_currency(@my_calculation.shifts_not_on_top_subtotal, :locale => :fi) %><br />
-			Additional time based salary subtotals: <%= number_to_currency(@my_calculation.shifts_on_top_subtotal, :locale => :fi) %></p>			
-			<h4>Time based salary subtotals: <%= number_to_currency(@my_calculation.all_shifts_subtotal, :locale => :fi) %></h4>		
+					<p>Base salary subtotals: <%= number_to_currency(@my_calculation.shifts_not_on_top_subtotal, :locale => :fi) %><br />
+						Additional time based salary subtotals: <%= number_to_currency(@my_calculation.shifts_on_top_subtotal, :locale => :fi) %></p>			
+						
+				<h4>Time based salary subtotals: <%= number_to_currency(@my_calculation.all_shifts_subtotal, :locale => :fi) %></h4>		
 			
 			<h3>Additional salary</h3>
 
-			<ul>
-			<% @my_calculation.additions.each do |addition| %>
-					<li><%= addition.date %> – <%= addition.employment.project.title %> (<%= addition.title %>): <u><%= number_to_currency(addition.sum, :locale => :fi) %></u></li>
-				<% end %>
-			</ul>
+				<table class="employee-wage-additions">
+					<tr>
+						<th>Date</th>
+						<th>Project title</th>
+						<th>Addition title</th>
+						<th>Addition sum</th>		
+					</tr>
+			
+					<% @my_calculation.additions.each do |addition| %>
+						<tr class="<%= cycle("even", "odd", :name => "additions") -%>">
+							<td><%= addition.date %><td> 
+							<td><%= addition.employment.project.title %></td> 
+							<td><%= addition.title %></td> 
+							<td><%= number_to_currency(addition.sum, :locale => :fi) %></td>
+						</tr>
+					<% end %>
+					<% reset_cycle("additions") %>
+				</table>
 
-			<h4>Additional salary subtotals: <%= number_to_currency(@my_calculation.additionals_subtotal, :locale => :fi) %></h4>		
+
+				<h4>Additional salary subtotals: <%= number_to_currency(@my_calculation.additionals_subtotal, :locale => :fi) %></h4>		
 			
 			<h3>Total salary: <%= number_to_currency(@my_calculation.total_salary, :locale => :fi) %></h3>
 	

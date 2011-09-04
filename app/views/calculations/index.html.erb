@@ -29,7 +29,7 @@
 							<th>Provision %</th>
 							<th>Provision earned</th>
 						</tr>
-					<% employee.sales.each do |sale| %>
+					<% employee.sales.reorder("confirmation_date asc").each do |sale| %>
 
 						<tr class="<%= cycle("even", "odd", :name => "provision") -%>">
 							<td><%= sale.confirmation_date %></td> 
@@ -57,7 +57,7 @@
 								<th>Comes on top of<br /> minimum wage</th>
 								<th>Earned</th>
 							</tr>
-					<% employee.shifts.each do |shift| %>
+					<% employee.shifts.reorder("start_date asc").each do |shift| %>
 							<tr class="<%= cycle("even", "odd", :name => "shifts") -%>">
 								<td><%= shift.id %></td>
 								<td><%= shift.employment.project.title %></td>
@@ -88,7 +88,7 @@
 							<th>Addition sum</th>		
 						</tr>
 			
-						<% employee.additions.each do |addition| %>
+						<% employee.additions.reorder("date asc").each do |addition| %>
 							<tr class="<%= cycle("even", "odd", :name => "additions") -%>">
 								<td><%= addition.date %></td> 
 								<td><%= addition.employment.project.title %></td> 
@@ -122,7 +122,7 @@
 						<th>Provision %</th>
 						<th>Provision earned</th>
 					</tr>
-				<% @my_calculation.sales.each do |sale| %>
+				<% @my_calculation.sales.reorder("confirmation_date asc").each do |sale| %>
 
 					<tr class="<%= cycle("even", "odd", :name => "sales") -%>">
 						<td><%= sale.confirmation_date %></td> 
@@ -149,7 +149,7 @@
 							<th>Comes on top of<br /> minimum wage</th>
 							<th>Earned</th>
 						</tr>
-				<% @my_calculation.shifts.each do |shift| %>
+				<% @my_calculation.shifts.reorder("start_date asc").each do |shift| %>
 						<tr class="<%= cycle("even", "odd", :name => "shifts") -%>">
 							<td><%= shift.id %></td>
 							<td><%= shift.employment.project.title %></td>
@@ -179,7 +179,7 @@
 						<th>Addition sum</th>		
 					</tr>
 			
-					<% @my_calculation.additions.each do |addition| %>
+					<% @my_calculation.additions.reorder("date asc").each do |addition| %>
 						<tr class="<%= cycle("even", "odd", :name => "additions") -%>">
 							<td><%= addition.date %><td> 
 							<td><%= addition.employment.project.title %></td> 

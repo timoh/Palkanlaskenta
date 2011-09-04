@@ -1,8 +1,10 @@
 class SalesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+  
   # GET /sales
   # GET /sales.xml
   def index
-    @sales = Sale.all
+    @sales = Sale.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -102,4 +104,15 @@ class SalesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+  def sort_column
+    Sale.column_names.include?(params[:sort]) ? params[:sort] : "confirmation_date"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end
+  
 end

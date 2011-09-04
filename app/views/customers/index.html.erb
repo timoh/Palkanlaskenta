@@ -13,19 +13,20 @@
     <th></th>
   </tr>
 
-<% @customers.each do |customer| %>
-  <tr>
-    <td><%= customer.name %></td>
-    <td><%= customer.contact_person_name %></td>
-    <td><%= customer.contact_person_email %></td>
-    <td><%= customer.contact_person_phone %></td>
-    <td><%= customer.billing_address %></td>
-    <td><%= customer.billing_details %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<% @customers.each do |customer| %>
+	  <tr class="<%= cycle("even", "odd", :name => "customers") -%>">
+	    <td><%= customer.name %></td>
+	    <td><%= customer.contact_person_name %></td>
+	    <td><%= customer.contact_person_email %></td>
+	    <td><%= customer.contact_person_phone %></td>
+	    <td><%= customer.billing_address %></td>
+	    <td><%= customer.billing_details %></td>
+	    <td><%= link_to 'Show', customer %></td>
+	    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+	    <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	<% reset_cycle("customers") %>
 </table>
 
 <br />

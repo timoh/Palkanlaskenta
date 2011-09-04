@@ -11,7 +11,7 @@
   </tr>
 
 <% @projects.each do |project| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd", :name => "projects") -%>">
     <td><%= project.title %></td>
     <td><%= project.project_start %></td>
     <td><%= project.project_end %></td>
@@ -20,6 +20,7 @@
     <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+<% reset_cycle("projects") %>
 </table>
 
 <br />

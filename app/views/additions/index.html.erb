@@ -12,7 +12,7 @@
   </tr>
 
 <% @additions.each do |addition| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd", :name => "additions") -%>">
 	<td><%= addition.date %></td>
 	<td><%= addition.employee.print_name %></td>
     <td><%= addition.title %></td>
@@ -22,6 +22,7 @@
     <td><%= link_to 'Destroy', addition, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+<% reset_cycle("additions") %>
 </table>
 
 <br />

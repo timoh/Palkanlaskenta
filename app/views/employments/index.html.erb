@@ -13,7 +13,7 @@
   </tr>
 
 <% @employments.each do |employment| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd", :name => "employments") -%>">
     <td><%= employment.employee.firstname %> <%= employment.employee.lastname %></td>
     <td><%= employment.project.title %></td>
     <td><%= employment.hourly_wage %></td>
@@ -24,6 +24,7 @@
     <td><%= link_to 'Destroy', employment, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+<% reset_cycle("employments") %>
 </table>
 
 <br />

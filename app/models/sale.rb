@@ -1,4 +1,5 @@
 class Sale < ActiveRecord::Base
+  
   belongs_to :employment
   belongs_to :employee
   belongs_to :customer
@@ -6,5 +7,10 @@ class Sale < ActiveRecord::Base
   validates_presence_of :title, :customer_id, :employment_id, :employee_id, :sum, :order_confirmation
   validates_numericality_of :employment_id, :employee_id, :sum
   
+  class << self
+    def not_billed
+      where(:billed => false)
+    end
+  end
   
 end

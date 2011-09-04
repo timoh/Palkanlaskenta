@@ -14,20 +14,21 @@
     <th></th>
   </tr>
 
-<% @shifts.each do |shift| %>
-  <tr>
-    <td><%= shift.employee.firstname %> <%= shift.employee.lastname %></td>
-    <td><%= shift.employment.project.title %></td>
-    <td><%= l shift.start_date, :format => :short %></td>
-    <td><%= shift.start_time.to_s(:time) %></td>
-    <td><%= shift.break_duration %></td>
-    <td><%= shift.duration %></td>
-	<td><%= l shift.start_time+shift.break_duration.hours+shift.duration.hours, :format => :time %></td>
-    <td><%= link_to 'Show', shift %></td>
-    <td><%= link_to 'Edit', edit_shift_path(shift) %></td>
-    <td><%= link_to 'Destroy', shift, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<% @shifts.each do |shift| %>
+	  <tr class="<%= cycle("even", "odd", :name => "shifts") -%>">
+	    <td><%= shift.employee.firstname %> <%= shift.employee.lastname %></td>
+	    <td><%= shift.employment.project.title %></td>
+	    <td><%= l shift.start_date, :format => :short %></td>
+	    <td><%= shift.start_time.to_s(:time) %></td>
+	    <td><%= shift.break_duration %></td>
+	    <td><%= shift.duration %></td>
+		<td><%= l shift.start_time+shift.break_duration.hours+shift.duration.hours, :format => :time %></td>
+	    <td><%= link_to 'Show', shift %></td>
+	    <td><%= link_to 'Edit', edit_shift_path(shift) %></td>
+	    <td><%= link_to 'Destroy', shift, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	<% reset_cycle("shifts") %>
 </table>
 
 <br />

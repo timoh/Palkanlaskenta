@@ -3,7 +3,7 @@ class CalculationsController < ApplicationController
 
   def index
     
-    @employees = Employee.all
+    @employees = Employee.order("lastname asc")
     @my_calculation = Employee.find(current_user.employee.id)
     
     @months_with_shifts = months_with_shifts 

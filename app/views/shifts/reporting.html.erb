@@ -2,39 +2,38 @@
 
 <div id="report-listing">
 	<% @employees.each do |employee| %>
-	<div class="employee-detailed-list">
-		<h2>Employee: <%= employee.firstname %> <%= employee.lastname %></h2>
+		<% if employee.shifts.count > 0 %>
+		<div class="employee-detailed-list">
+			<h2>Employee: <%= employee.firstname %> <%= employee.lastname %></h2>
 
-		<table>
-		  <tr>
-				<th>Shift id</th>
-		    <th>Date</th>
-		    <th>Duration</th>
-				<th>Case</th>
-		    <th></th>
-		    <th></th>
-		    <th></th>
-		  </tr>
+			<table>
+			  <tr>
+					<th>Shift id</th>
+			    <th>Date</th>
+			    <th>Duration</th>
+					<th>Case</th>
+			    <th></th>
+			    <th></th>
+			    <th></th>
+			  </tr>
 
-		<% employee.shifts.each do |shift| %>
+			<% employee.shifts.each do |shift| %>
 
-		  <tr>
-				<td><%= shift.id %></td>
-		    <td><%= l shift.start_date, :format => :short %></td>
-		    <td><%= shift.duration %></td>
-				<td><%= shift.employment.project.title %></td>
-		    <td><%= link_to 'Show', shift %></td>
-		    <td><%= link_to 'Edit', edit_shift_path(shift) %></td>
-		    <td><%= link_to 'Destroy', shift, :confirm => 'Are you sure?', :method => :delete %></td>
-		  </tr>
+			  <tr class="<%= cycle("even", "odd", :name => "shifts") -%>">
+					<td><%= shift.id %></td>
+			    <td><%= l shift.start_date, :format => :short %></td>
+			    <td><%= shift.duration %></td>
+					<td><%= shift.employment.project.title %></td>
+			    <td><%= link_to 'Show', shift %></td>
+			    <td><%= link_to 'Edit', edit_shift_path(shift) %></td>
+			    <td><%= link_to 'Destroy', shift, :confirm => 'Are you sure?', :method => :delete %></td>
+			  </tr>
 
+			<% end %>
+			<% reset_cycle("shifts") %>
+			</table>
+			<h3><b>Total durations: </b><%= employee.total_durations %></h3>
+		</div>
 		<% end %>
-		</table>
-		<h3><b>Total durations: </b><%= employee.total_durations %></h3>
-	</div>
 	<% end %>
 </div>
-
-<br />
-
-<%= link_to 'New Shift', new_shift_path %>

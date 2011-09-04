@@ -7,6 +7,7 @@
     <th>Minimum wage</th>
     <th>Employment start</th>
     <th>Employment end</th>
+	<th>Current?</th>
     <th>Default provision</th>
     <th></th>
     <th></th>
@@ -14,18 +15,20 @@
   </tr>
 
 <% @employees.each do |employee| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd", :name => "employees") -%>">
     <td><%= employee.firstname %></td>
     <td><%= employee.lastname %></td>
     <td><%= employee.minimum_wage %></td>
     <td><%= employee.employment_start %></td>
     <td><%= employee.employment_end %></td>
+	<td><%= employee.current_employee? %></td>
     <td><%= employee.default_provision %></td>
     <td><%= link_to 'Show', employee %></td>
     <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
     <td><%= link_to 'Destroy', employee, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+<% reset_cycle("employees") %>
 </table>
 
 <br />

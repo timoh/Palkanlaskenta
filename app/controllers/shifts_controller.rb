@@ -2,7 +2,7 @@ class ShiftsController < ApplicationController
   # GET /shifts
   # GET /shifts.xml
   def index
-    @shifts = Shift.all
+    @shifts = Shift.order("start_date asc")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,7 +12,7 @@ class ShiftsController < ApplicationController
   
   def reporting
     @employees = Employee.all
-    @shifts = Shift.all
+    @shifts = Shift.order("start_date asc")
 
     respond_to do |format|
       format.html # index.html.erb

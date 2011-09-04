@@ -115,11 +115,15 @@ div.field, div.actions {
 
 table, td, tr {
 	border: 0 solid transparent;
-	padding: 0;
+	
 }
 
 td, th {
 	padding: 7px 30px 7px 30px;
+}
+
+th {
+	border-bottom: 1px solid #FF0000;
 }
 
 .even {

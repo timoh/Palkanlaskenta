@@ -90,7 +90,7 @@
 			
 						<% employee.additions.each do |addition| %>
 							<tr class="<%= cycle("even", "odd", :name => "additions") -%>">
-								<td><%= addition.date %><td> 
+								<td><%= addition.date %></td> 
 								<td><%= addition.employment.project.title %></td> 
 								<td><%= addition.title %></td> 
 								<td><%= number_to_currency(addition.sum, :locale => :fi) %></td>

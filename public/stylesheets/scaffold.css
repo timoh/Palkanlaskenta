@@ -118,7 +118,7 @@ table, td, tr {
 	padding: 0;
 }
 
-td {
+td, th {
 	padding: 7px 30px 7px 30px;
 }
 

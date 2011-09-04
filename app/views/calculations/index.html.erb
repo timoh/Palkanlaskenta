@@ -93,7 +93,7 @@
 								<td><%= addition.date %></td> 
 								<td><%= addition.employment.project.title %></td> 
 								<td><%= addition.title %></td> 
-								<td><%= number_to_currency(addition.sum, :locale => :fi) %></td>
+								<td><u><%= number_to_currency(addition.sum, :locale => :fi) %></u></td>
 							</tr>
 						<% end %>
 						<% reset_cycle("additions") %>
@@ -184,7 +184,7 @@
 							<td><%= addition.date %><td> 
 							<td><%= addition.employment.project.title %></td> 
 							<td><%= addition.title %></td> 
-							<td><%= number_to_currency(addition.sum, :locale => :fi) %></td>
+							<td><u><%= number_to_currency(addition.sum, :locale => :fi) %></u></td>
 						</tr>
 					<% end %>
 					<% reset_cycle("additions") %>

@@ -20,7 +20,7 @@
 	    <td><%= customer.contact_person_email %></td>
 	    <td><%= customer.contact_person_phone %></td>
 	    <td><%= customer.billing_address %></td>
-	    <td><%= customer.billing_details %></td>
+	    <td><%= truncate(customer.billing_details, :length => 25, :omission => '...' %></td>
 	    <td><%= link_to 'Show', customer %></td>
 	    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
 	    <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>

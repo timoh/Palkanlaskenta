@@ -1,5 +1,7 @@
 <h1>Listing sales</h1>
 
+<%= link_to 'Add New Sale', new_sale_path %>
+
 <table>
 	<tr>
 		<th><%= sortable "confirmation_date" %></th>
@@ -36,4 +38,4 @@
 
 <br />
 
-<%= link_to 'New Sale', new_sale_path %>
+<%= link_to 'Add New Sale', new_sale_path %>

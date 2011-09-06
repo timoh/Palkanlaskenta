@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+	<th>Company code</th>
     <th>Name</th>
     <th>Contact person name</th>
     <th>Contact person email</th>
@@ -15,12 +16,13 @@
 
 	<% @customers.each do |customer| %>
 	  <tr class="<%= cycle("even", "odd", :name => "customers") -%>">
-	    <td><%= customer.name %></td>
+		<td><%= customer.company_code %></td>    
+		<td><%= customer.name %></td>
 	    <td><%= customer.contact_person_name %></td>
 	    <td><%= customer.contact_person_email %></td>
 	    <td><%= customer.contact_person_phone %></td>
 	    <td><%= customer.billing_address %></td>
-	    <td><%= truncate(customer.billing_details, :length => 25, :omission => '...' %></td>
+	    <td><%= truncate(customer.billing_details, :length => 25, :omission => '...') %></td>
 	    <td><%= link_to 'Show', customer %></td>
 	    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
 	    <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>

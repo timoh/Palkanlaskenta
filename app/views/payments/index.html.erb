@@ -2,26 +2,27 @@
 
 <table>
   <tr>
-    <th>Employee</th>
-    <th>Title</th>
-    <th>Payment date</th>
-    <th>Sum</th>
+    <th><%= sortable "payment_date" %></th>
+    <th><%= sortable "employee" %></th>
+    <th><%= sortable "title" %></th>
+    <th><%= sortable "sum" %></th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @payments.each do |payment| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd", :name => "payments") -%>">
+    <td><%= payment.payment_date %></td>
     <td><%= payment.employee.firstname %></td>
     <td><%= payment.title %></td>
-    <td><%= payment.payment_date %></td>
     <td><%= payment.sum %></td>
     <td><%= link_to 'Show', payment %></td>
     <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
     <td><%= link_to 'Destroy', payment, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+<% reset_cycle("payments") %>
 </table>
 
 <br />

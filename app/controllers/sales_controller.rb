@@ -60,7 +60,7 @@ class SalesController < ApplicationController
         
         logger.info "Sale #{@sale.title} created by #{current_user.email}"
         
-        format.html { redirect_to(@sale, :notice => 'Sale was successfully created.') }
+        format.html { redirect_to(sales_path, :notice => 'Sale was successfully created.') }
         format.xml  { render :xml => @sale, :status => :created, :location => @sale }
       else
         format.html { render :action => "new" }
@@ -81,7 +81,7 @@ class SalesController < ApplicationController
         
         logger.info "Sale #{@sale.title} updated by #{current_user.email}"
         
-        format.html { redirect_to(@sale, :notice => 'Sale was successfully updated.') }
+        format.html { redirect_to(sales_path, :notice => 'Sale was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

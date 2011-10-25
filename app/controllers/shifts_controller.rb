@@ -64,7 +64,7 @@ class ShiftsController < ApplicationController
 
     respond_to do |format|
       if @shift.save
-        format.html { redirect_to(@shift, :notice => 'Shift was successfully created.') }
+        format.html { redirect_to(shifts_path, :notice => 'Shift was successfully created.') }
         format.xml  { render :xml => @shift, :status => :created, :location => @shift }
       else
         format.html { render :action => "new" }
@@ -80,7 +80,7 @@ class ShiftsController < ApplicationController
 
     respond_to do |format|
       if @shift.update_attributes(params[:shift])
-        format.html { redirect_to(@shift, :notice => 'Shift was successfully updated.') }
+        format.html { redirect_to(shifts_path, :notice => 'Shift was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

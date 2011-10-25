@@ -53,7 +53,7 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to(@payment, :notice => 'Payment was successfully created.') }
+        format.html { redirect_to(payments_path, :notice => 'Payment was successfully created.') }
         format.xml  { render :xml => @payment, :status => :created, :location => @payment }
       else
         format.html { render :action => "new" }
@@ -69,7 +69,7 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if @payment.update_attributes(params[:payment])
-        format.html { redirect_to(@payment, :notice => 'Payment was successfully updated.') }
+        format.html { redirect_to(payments_path, :notice => 'Payment was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Employee</th>
     <th>Title</th>
     <th>Payment date</th>
     <th>Sum</th>
@@ -12,6 +13,7 @@
 
 <% @payments.each do |payment| %>
   <tr>
+    <td><%= payment.employee.firstname %></td>
     <td><%= payment.title %></td>
     <td><%= payment.payment_date %></td>
     <td><%= payment.sum %></td>

@@ -61,7 +61,7 @@
 							<tr class="<%= cycle("even", "odd", :name => "shifts") -%>">
 								<td><%= shift.id %></td>
 								<td><%= shift.employment.project.title %></td>
-								<td><%= l (shift.start_date, :format => :short) %></td>
+								<td><%= l shift.start_date, :format => :short %></td>
 								<td><%= shift.duration%></td>
 								<td><%= shift.employment.hourly_wage%>&euro;/h</td>
 								<td><b><%= shift.employment.comes_on_top %></b></td> 
@@ -100,8 +100,10 @@
 					</table>		
 				<% end %>
 					<h4>Additional salary subtotals: <%= number_to_currency(employee.additionals_subtotal, :locale => :fi) %></h4>
+					
+					<h4>Total salary already paid: <%= number_to_currency(employee.total_payments, :locale => :fi) %></h4>
 				
-			<h3>Total salary: <%= number_to_currency(employee.total_salary, :locale => :fi) %></h3>
+			<h3>Total salary payable: <%= number_to_currency(employee.total_salary, :locale => :fi) %></h3>
 		
 		</div>
 		<% end %>
@@ -153,7 +155,7 @@
 						<tr class="<%= cycle("even", "odd", :name => "shifts") -%>">
 							<td><%= shift.id %></td>
 							<td><%= shift.employment.project.title %></td>
-							<td><%= l (shift.start_date, :format => :short) %></td>
+							<td><%= l shift.start_date, :format => :short %></td>
 							<td><%= shift.duration%></td>
 							<td><%= shift.employment.hourly_wage%>&euro;/h</td>
 							<td><b><%= shift.employment.comes_on_top %></b></td> 
@@ -193,7 +195,9 @@
 
 				<h4>Additional salary subtotals: <%= number_to_currency(@my_calculation.additionals_subtotal, :locale => :fi) %></h4>		
 			
-			<h3>Total salary: <%= number_to_currency(@my_calculation.total_salary, :locale => :fi) %></h3>
+			  <h4>Total salary already paid: <%= number_to_currency(@my_calculation.total_payments, :locale => :fi) %></h4>
+			
+			<h3>Total salary payable: <%= number_to_currency(@my_calculation.total_salary, :locale => :fi) %></h3>
 	
 		</div>
 <% end %>

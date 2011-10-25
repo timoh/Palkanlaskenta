@@ -5,6 +5,7 @@ class Employee < ActiveRecord::Base
   has_many :shifts
   has_many :additions
   has_many :sales
+  has_many :payments
   
   has_one :user
   
@@ -78,6 +79,16 @@ class Employee < ActiveRecord::Base
     sot_subtotal
   end
   
+  def total_payments
+    tot_payments = 0
+    
+    self.payments.each do |payment|
+      tot_payments = tot_payments+payment.sum
+    end
+    
+    tot_payments    
+  end
+  
   
   def total_salary
     tot_salary = 0
@@ -99,8 +110,10 @@ class Employee < ActiveRecord::Base
     tot_salary = tot_salary+self.shifts_on_top_subtotal
     tot_salary = tot_salary+self.additionals_subtotal
     
+    #subtract already paid salaries from payable salary
+    tot_salary = tot_salary-self.total_payments
 
-    return tot_salary
+    tot_salary
   end
   
   

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  payment_date: 2011-10-25
+  sum: 1.5
+
+two:
+  title: MyString
+  payment_date: 2011-10-25
+  sum: 1.5

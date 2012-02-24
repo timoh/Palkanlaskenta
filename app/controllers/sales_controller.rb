@@ -83,7 +83,7 @@ class SalesController < ApplicationController
         
         logger.info "Sale #{@sale.title} updated by #{current_user.email}"
         
-        format.html { redirect_to(sales_path, :notice => 'Sale was successfully updated.'+metrify_log("Updated sale")) }
+        format.html { redirect_to(sales_path, :notice => 'Sale was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

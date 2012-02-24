@@ -71,7 +71,9 @@
 <p id="notice"><%= notice %></p>
 
 <% if notice %>
-  <script type="text/javascript">metrify.fire("<%= notice %>");</script>
+  <script type="text/javascript">
+    metrify.fire("<%= notice %>");
+  </script>
 <% end %>
 
 

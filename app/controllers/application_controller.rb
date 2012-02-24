@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :admin?
   
+  def metrify_log(event)
+    render :text => "<script type=\"text/javascript\">metrify.fire(#{event});</script>"
+  end
+  
   
   def require_login
     unless current_user

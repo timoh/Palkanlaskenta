@@ -76,7 +76,7 @@ class SalesController < ApplicationController
     employment_id = params[:id][:employment_id]
     @sale.employee_id = @sale.employment.employee.id
     
-    def metrify_log("Updated sale")
+    metrify_log("Updated sale")
 
     respond_to do |format|
       if @sale.update_attributes(params[:sale])

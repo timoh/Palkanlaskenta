@@ -76,14 +76,14 @@ class SalesController < ApplicationController
     employment_id = params[:id][:employment_id]
     @sale.employee_id = @sale.employment.employee.id
     
-    metrify_log("Updated sale")
+    
 
     respond_to do |format|
       if @sale.update_attributes(params[:sale])
         
         logger.info "Sale #{@sale.title} updated by #{current_user.email}"
         
-        format.html { redirect_to(sales_path, :notice => 'Sale was successfully updated.') }
+        format.html { redirect_to(sales_path, :notice => 'Sale was successfully updated.'+metrify_log("Updated sale")) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
